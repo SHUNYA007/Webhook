@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, HTTPException
 import json
 import os
+import uvicorn
 
 app = FastAPI()
 
@@ -79,4 +80,7 @@ def clear_all_data():
 def get_all_data():
     load_from_file()
     return {"all_data_stores": previous_data_stores + [data_store]}
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=80, host='0.0.0.0')
 
